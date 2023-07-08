@@ -47,12 +47,12 @@ jobs:
         run: pip install nbconvert numpy matplotlib
 
       - name: Run Jupyter Notebook tests
+        working-directory: ${{github.workspace}}/notebook_jupyter
         run: |
-          cd notebook_jupyter
           jupyter nbconvert --execute --inplace *.ipynb
           if [ $? -eq 0 ]; then
-            echo "Jupyter Notebook tests passed"
+            echo "[PASS] Jupyter Notebook tests"
           else
-            echo "Jupyter Notebook tests failed"
+            echo "[FAIL] Jupyter Notebook tests"
             exit 1
           fi
